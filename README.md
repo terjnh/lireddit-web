@@ -1,7 +1,7 @@
 # README 
 - Following Ben Awad's FullStack Tut:
   - https://www.youtube.com/watch?v=I6ypD7qv3Z8
-  - [3:50:25] - Completed login/logout functions
+  - [4:08:20] - Completed Server-side rendering
 - Github Link: https://github.com/benawad/lireddit
 
 
@@ -56,6 +56,12 @@
   
 8. Use graphcache (urql)
   - $ yarn add @urql/exchange-graphcache
+
+9. Setup server-side-rendering (SSR)
+  - https://formidable.com/open-source/urql/docs/advanced/server-side-rendering/
+  - $ yarn add next-urql react-is isomorphic-unfetch
+    - Use SSR if the content of the page is important to SEO
+    - SSR will load the contents from the server before page refresh
 
 
 

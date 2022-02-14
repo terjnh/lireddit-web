@@ -10,6 +10,8 @@ import { useMutation } from "urql";
 import { useLoginMutation, useRegisterMutation } from "../generated/graphql";
 import { toErrorMap } from "../utils/toErrorMap";
 import { useRouter } from "next/router";
+import { withUrqlClient } from "next-urql";
+import { createUrqlClient } from "../utils/createUrqlClient";
 
 
 const Login: React.FC<{}> = ({}) => {
@@ -27,7 +29,7 @@ const Login: React.FC<{}> = ({}) => {
           // .data?. means that it can be 'undefined' and typscript handles it
           if(response.data?.login.errors) {
             setErrors(toErrorMap(response.data.login.errors));
-          } else if(response.data.login.user) {
+          } else if(response.data?.login.user) {
             // worked
             router.push("/");
           }
@@ -63,4 +65,4 @@ const Login: React.FC<{}> = ({}) => {
   );
 };
 
-export default Login;
+export default withUrqlClient(createUrqlClient)(Login);

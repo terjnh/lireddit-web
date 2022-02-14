@@ -1,0 +1,6 @@
+1. Sequence of steps for server-side-rendering(SSR):
+    - me -> make request to browser to http://localhost:3000
+    -> make request to next.js server
+    -> make request to graphql server (localhost:4000)
+    -> building the HTML
+    -> sending it back to your browser

@@ -1,19 +1,16 @@
-import React from "react";
-import { Formik, Form } from "formik";
 import {
   Box,
-  Button,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
+  Button
 } from "@chakra-ui/react";
-import { Wrapper } from "../components/Wrapper";
-import { InputField } from "../components/InputField";
-import { useMutation } from "urql";
-import { useRegisterMutation } from "../generated/graphql";
-import { toErrorMap } from "../utils/toErrorMap";
+import { Form, Formik } from "formik";
+import { withUrqlClient } from "next-urql";
 import { useRouter } from "next/router";
+import React from "react";
+import { InputField } from "../components/InputField";
+import { Wrapper } from "../components/Wrapper";
+import { useRegisterMutation } from "../generated/graphql";
+import { createUrqlClient } from "../utils/createUrqlClient";
+import { toErrorMap } from "../utils/toErrorMap";
 
 interface registerProps {}
 
@@ -33,7 +30,7 @@ const Register: React.FC<registerProps> = ({}) => {
           // .data?. means that it can be 'undefined' and typscript handles it
           if(response.data?.register.errors) {
             setErrors(toErrorMap(response.data.register.errors));
-          } else if(response.data.register.user) {
+          } else if(response.data?.register.user) {
             // worked
             router.push("/");
           }
@@ -69,4 +66,4 @@ const Register: React.FC<registerProps> = ({}) => {
   );
 };
 
-export default Register;
+export default withUrqlClient(createUrqlClient)(Register);
