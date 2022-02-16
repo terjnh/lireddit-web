@@ -1,7 +1,7 @@
 # README 
 - Following Ben Awad's FullStack Tut:
   - https://www.youtube.com/watch?v=I6ypD7qv3Z8
-  - [4:08:20] - Completed Server-side rendering
+  - [5:09:48] - User login/logout + forget password email link(from GraphQL playground)
 - Github Link: https://github.com/benawad/lireddit
 
 

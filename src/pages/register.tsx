@@ -1,7 +1,4 @@
-import {
-  Box,
-  Button
-} from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 import { Form, Formik } from "formik";
 import { withUrqlClient } from "next-urql";
 import { useRouter } from "next/router";
@@ -14,23 +11,22 @@ import { toErrorMap } from "../utils/toErrorMap";
 
 interface registerProps {}
 
-
 const Register: React.FC<registerProps> = ({}) => {
   const router = useRouter();
   // 2nd paramter of const [,register] -> 'register' is our function (any name we want)
-  const [,register] = useRegisterMutation();
+  const [, register] = useRegisterMutation();
   return (
     <Wrapper variant="small">
       <Formik
-        initialValues={{ username: "", password: "" }}
+        initialValues={{ email: "", username: "", password: "" }}
         // take note: 'username' and 'password' must match to REGISTER_MUT
-        onSubmit={async (values, {setErrors}) => {
+        onSubmit={async (values, { setErrors }) => {
           // console.log("submit-values:", values);
-          const response = await register(values);
+          const response = await register({ options: values });
           // .data?. means that it can be 'undefined' and typscript handles it
-          if(response.data?.register.errors) {
+          if (response.data?.register.errors) {
             setErrors(toErrorMap(response.data.register.errors));
-          } else if(response.data?.register.user) {
+          } else if (response.data?.register.user) {
             // worked
             router.push("/");
           }
@@ -43,6 +39,9 @@ const Register: React.FC<registerProps> = ({}) => {
               placeholder="username"
               label="Username"
             />
+            <Box mt={4}>
+              <InputField name="email" placeholder="email" label="Email" />
+            </Box>
             <Box mt={4}>
               <InputField
                 name="password"

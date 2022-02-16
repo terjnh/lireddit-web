@@ -21,11 +21,11 @@ const Login: React.FC<{}> = ({}) => {
   return (
     <Wrapper variant="small">
       <Formik
-        initialValues={{ username: "", password: "" }}
+        initialValues={{ usernameOrEmail: "", password: "" }}
         // take note: 'username' and 'password' must match to REGISTER_MUT
         onSubmit={async (values, {setErrors}) => {
           // console.log("submit-values:", values);
-          const response = await login({options: values});
+          const response = await login(values);
           // .data?. means that it can be 'undefined' and typscript handles it
           if(response.data?.login.errors) {
             setErrors(toErrorMap(response.data.login.errors));
@@ -38,9 +38,9 @@ const Login: React.FC<{}> = ({}) => {
         {(props) => (
           <Form>
             <InputField
-              name="username"
-              placeholder="username"
-              label="Username"
+              name="usernameOrEmail"
+              placeholder="username or email"
+              label="Username or Email"
             />
             <Box mt={4}>
               <InputField
