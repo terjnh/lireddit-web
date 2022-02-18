@@ -1,7 +1,7 @@
 # README 
 - Following Ben Awad's FullStack Tut:
   - https://www.youtube.com/watch?v=I6ypD7qv3Z8
-  - [5:22:16] - Completed 'forgot password' flow
+  - [8:18:55] - JOIN user and posts tables
 - Github Link: https://github.com/benawad/lireddit
 
 
@@ -68,3 +68,7 @@
 ### Notes:
 - Using src/graphql/fragments
   - When we need more fields in a particular object, we can change it in fragments, rather than change all the queries in all `.graphql` files
+
+- mockaroo
+  - www.mockaroo.com
+  - Generate fake data

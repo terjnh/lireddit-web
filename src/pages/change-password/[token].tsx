@@ -11,7 +11,7 @@ import { createUrqlClient } from "../../utils/createUrqlClient";
 import { toErrorMap } from "../../utils/toErrorMap";
 import NextLink from "next/link";
 
-export const ChangePassword: NextPage<{ token: string }> = ({ token }) => {
+export const ChangePassword: NextPage = () => {
   const router = useRouter();
   const [, changePassword] = useChangePasswordMutation();
   const [tokenError, setTokenError] = useState("");
@@ -24,7 +24,7 @@ export const ChangePassword: NextPage<{ token: string }> = ({ token }) => {
         onSubmit={async (values, { setErrors }) => {
           const response = await changePassword({
             newPassword: values.newPassword,
-            token,
+            token: typeof router.query.token === 'string' ? router.query.token : "",
           });
           console.log("changePassword, response:", response);
           // .data?. means that it can be 'undefined' and typscript handles it
@@ -71,11 +71,6 @@ export const ChangePassword: NextPage<{ token: string }> = ({ token }) => {
   );
 };
 
-ChangePassword.getInitialProps = ({ query }) => {
-  return {
-    token: query.token as string,
-  };
-};
 
 // ssr: false -> no need to server-side-render
 export default withUrqlClient(createUrqlClient, { ssr: false })(ChangePassword);

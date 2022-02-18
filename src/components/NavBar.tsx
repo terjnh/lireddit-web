@@ -10,7 +10,7 @@ interface NavBarProps {}
 export const NavBar: React.FC<NavBarProps> = ({}) => {
   const [{ fetching: logoutFetching }, logout] = useLogoutMutation();
   const [{ data, fetching }] = useMeQuery({
-    pause: isServer() , // disable ssr for this query
+    pause: isServer(), // disable ssr for this query
   });
   let body = null;
 
@@ -53,7 +53,7 @@ export const NavBar: React.FC<NavBarProps> = ({}) => {
   }
 
   return (
-    <Flex bg="tan" p={4} ml={"auto"}>
+    <Flex zIndex={1} position="sticky" top="0" bg="tan" p={4} ml={"auto"}>
       <Box ml={"auto"}>{body}</Box>
     </Flex>
   );
