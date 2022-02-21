@@ -21,7 +21,7 @@ const CreatePost: React.FC<{}> = ({}) => {
         initialValues={{ title: "", text: "" }}
         // take note: 'username' and 'password' must match to REGISTER_MUT
         onSubmit={async (values) => {
-          console.log("values:", values);
+          // console.log("values:", values);
           const { error } = await createPost({ input: values });
           if (!error) {
             router.push("/")
